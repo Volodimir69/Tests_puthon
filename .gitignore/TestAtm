@@ -1,0 +1,47 @@
+import unittest
+from terminal import Atm
+
+
+class AtmTests(unittest.TestCase):
+
+     def setUp(self):
+        self.terminal = Atm()
+        self.terminal.enter_pin(777)
+        self.terminal.attempts = 2
+
+     def test_enter_pin(self):
+
+        pin = self.terminal.enter_pin(777)
+        self.assertEqual(pin, True)
+
+     def test_blunk(self):
+         pin = self.terminal.enter_pin()
+         self.assertEqual(pin, 777)
+
+     def test_error_pin(self):
+         pin = self.terminal.enter_pin(234)
+         self.assertEqual(pin, 777)
+
+     def test_error_pin1(self):
+         pin = self.terminal.enter_pin(77)
+         self.assertEqual(pin, 777)
+
+     def test_positiv2(self):
+         pin = self.terminal.enter_pin(777)
+         self.assertTrue(pin, True)
+
+     def test_attempt(self):
+         pin = self.terminal.enter_pin(234)
+         self.assertEqual(pin, 234)
+
+     def test_positiv11(self):
+         pin = self.terminal.enter_pin(231)
+         self.assertEqual(pin, True)
+
+     def test_atempts(self):
+         atempt = self.terminal.attempts(2)
+         self.assertNotEqual(atempt, 2)
+
+
+if __name__ == '__main__':
+    unittest.main
